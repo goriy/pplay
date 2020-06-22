@@ -1,0 +1,14 @@
+__pycache__/*
+tmp/*
+*.pdf
+*.txt
+
+*.pyc
+*.pyo
+dist/*
+*.egg-info/*
+build/*
+env/
+*.whl
+*.spec
+out/*
