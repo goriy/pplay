@@ -73,7 +73,8 @@ as dependency - its source code have been already included.
 
 These vlc bindings are released under terms of LGPL license.
 This player just imports vlc bindings (links with it).
-Source code remains unmodified and it is provided with source code of player itself.
+The source code remains unmodified and is provided with
+the source code of the player itself.
 
 This package (vlc bindings) can be downloaded/installed independently as described
 [here](https://pypi.org/project/python-vlc/).
