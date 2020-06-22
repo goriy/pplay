@@ -26,7 +26,7 @@ apt-get install python3-mutagen
 
 For Windows it can be downloaded from [unofficial package builds](https://www.lfd.uci.edu/~gohlke/pythonlibs/).
 
-Alternatively, it can be also installed  via pip3:
+Alternatively, it can also be installed  via pip3:
 
 ```
 pip3 install mutagen
@@ -40,13 +40,17 @@ You may clone this repo and run (at the root folder of reposotory clone):
 pip3 install --upgrade .
 ```
 
-Alternatively you may download python *wheel* package and install it:
+Alternatively you may download the python *wheel* package and install it:
 
 ```
 pip3 install --upgrade pplay-1.0-py3-none-any.whl
 ```
 
 Another way is to install directly from remote repository:
+
+```
+pip3 install --upgrade git+https://github.com/goriy/pplay.git
+```
 
 ## Usage
 
@@ -68,10 +72,11 @@ Usage: pplay [file]
 ## VLC python bindings
 
 Player uses vlc player python bindings. Its source code is copied into 
-pplay sources *WITHOUT* any modification. Due to this fact, it's not mentioned
-as dependency - its source code have been already included. 
+pplay sources *WITHOUT* any modification. 
+In this regard, it is not mentioned
+as a dependency - its source code is already included. 
 
-These vlc bindings are released under terms of LGPL license.
+These vlc bindings are licensed under the LGPL license.
 This player just imports vlc bindings (links with it).
 The source code remains unmodified and is provided with
 the source code of the player itself.
