@@ -64,3 +64,16 @@ Usage: pplay [file]
 * Space - toggle play/pause
 * Left, Right - change current playback position (ff, rewind)
 * Up, Down - change volume
+
+## VLC python bindings
+
+Player uses vlc player python bindings. Its source code is copied into 
+pplay sources *WITHOUT* any modification. Due to this fact, it's not mentioned
+as dependency - its source code have been already included. 
+
+This vlc bindings are released under terms of LGPL license.
+This player just imports vlc bindings (links with it).
+Source code remains unmodified and it is provided with source code of player itself.
+
+This package (vlc bindings) can be downloaded/installed independently as described
+[here](https://pypi.org/project/python-vlc/).
