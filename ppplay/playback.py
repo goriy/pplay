@@ -6,6 +6,7 @@ import sys
 import ppplay.vlc
 import math
 import mutagen
+import wave
 
 class playback:
   #############################################################################
@@ -32,23 +33,44 @@ class playback:
     self.stop()
 
   #############################################################################
+  def get_file_metadata(self, filename):
+    self.bitrate = 0
+    self.length  = 10
+
+    fi = mutagen.File(filename)
+    if not (fi is None):
+      self.bitrate = fi.info.bitrate // 1000
+      self.length  = fi.info.length
+      #self.bitrate = self.mplay.get_rate()
+      #self.length  = self.mplay.get_length() / 1000.0
+    else:
+      f_ext = os.path.splitext(filename)
+      ext = f_ext[1].lower()
+      if ext == '.wav':
+        with wave.open(filename) as wf:
+          frames = wf.getnframes()
+          rate = wf.getframerate()
+          duration = frames / float(rate)
+          print(frames,rate,duration)
+          self.length = duration
+          self.bitrate = (wf.getnchannels() * wf.getsampwidth() * 8 * float(rate)) // 1000
+
+    self.length_f = self.seconds_to_norm(self.length)
+    self.bitrate_s = "%sk" % (self.bitrate)
+
+
+  #############################################################################
   def load_file(self, filename):
     if not os.path.isfile(filename):
       return False
     self.filename = filename
     self.filetitle = os.path.basename(filename)
-    fi = mutagen.File(filename)
-    self.bitrate = fi.info.bitrate // 1024
-    self.length  = fi.info.length
+
+    self.get_file_metadata(filename)
 
     self.mplay = ppplay.vlc.MediaPlayer(filename)
     self.mplay.play()
     self.mplay.set_pause(1)
-
-    #self.bitrate = self.mplay.get_rate()
-    #self.length  = self.mplay.get_length() / 1000.0
-    self.length_f = self.seconds_to_norm(self.length)
-    self.bitrate_s = "%sk" % (self.bitrate)
 
     if (self.length < 30.0):
       self.time_step = 2.0
